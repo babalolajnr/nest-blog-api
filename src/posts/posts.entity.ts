@@ -13,7 +13,8 @@ export class Post{
     content: string;
 
     @Column()
-    published: boolean;
+    likes: number;
 
-    
+    @Column()
+    published: boolean;
 }
