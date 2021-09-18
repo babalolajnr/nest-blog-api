@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class Post{
+export class Post {
 
     @PrimaryGeneratedColumn()
     id: number;
@@ -12,9 +12,9 @@ export class Post{
     @Column()
     content: string;
 
-    @Column()
+    @Column({ default: 0 })
     likes: number;
 
-    @Column()
+    @Column({ default: false })
     published: boolean;
 }
