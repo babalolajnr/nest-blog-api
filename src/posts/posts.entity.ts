@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  UpdateDateColumn,
+  CreateDateColumn,
+} from 'typeorm';
 import { User } from 'src/users/user.entity';
 
 @Entity()
@@ -18,6 +25,13 @@ export class Post {
   @Column({ default: false })
   published: boolean;
 
-  @ManyToOne(() => User, (user) => user.posts)
+  // eslint-disable-next-line prettier/prettier
+  @ManyToOne(() => User, user => user.posts)
   user: User;
+
+  @CreateDateColumn()
+  created_on: Date;
+
+  @UpdateDateColumn()
+  updated_on: Date;
 }
