@@ -10,7 +10,7 @@ export class UsersService {
     private usersRepository: Repository<User>,
   ) {}
 
-  create(
+  register(
     firstName: string,
     lastName: string,
     email: string,
