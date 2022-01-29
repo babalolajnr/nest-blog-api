@@ -1,25 +1,23 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
-import { User } from "src/users/user.entity"
-
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { User } from 'src/users/user.entity';
 
 @Entity()
 export class Post {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @PrimaryGeneratedColumn()
-    id: number;
+  @Column()
+  title: string;
 
-    @Column()
-    title: string;
+  @Column()
+  content: string;
 
-    @Column()
-    content: string;
+  @Column({ default: 0 })
+  likes: number;
 
-    @Column({ default: 0 })
-    likes: number;
+  @Column({ default: false })
+  published: boolean;
 
-    @Column({ default: false })
-    published: boolean;
-
-    @ManyToOne(() => User, user => user.posts)
-    user: User;
+  @ManyToOne(() => User, (user) => user.posts)
+  user: User;
 }
