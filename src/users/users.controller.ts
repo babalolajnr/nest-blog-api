@@ -1,13 +1,12 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { User } from './user.entity';
 import { UsersService } from './users.service';
 
 @Controller('user')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post('create')
-  async createUser(
+  @Post('register')
+  async register(
     @Body()
     values: {
       firstName: string;
@@ -16,7 +15,7 @@ export class UsersController {
       password: string;
     },
   ): Promise<void> {
-    this.usersService.create(
+    this.usersService.register(
       values.firstName,
       values.lastName,
       values.email,
