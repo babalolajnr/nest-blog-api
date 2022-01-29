@@ -1,5 +1,12 @@
 import { Post } from 'src/posts/posts.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class User {
@@ -21,6 +28,13 @@ export class User {
   @Column({ default: true })
   isActive: boolean;
 
-  @OneToMany(() => Post, (post) => post.user)
+  // eslint-disable-next-line prettier/prettier
+  @OneToMany(() => Post, post => post.user)
   posts: Post[];
+
+  @CreateDateColumn()
+  created_on: Date;
+
+  @UpdateDateColumn()
+  updated_on: Date;
 }
