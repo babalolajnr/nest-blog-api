@@ -10,6 +10,22 @@ export class UsersService {
     private usersRepository: Repository<User>,
   ) {}
 
+  create(
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string,
+  ): User {
+    const user = this.usersRepository.create({
+      firstName,
+      lastName,
+      email,
+      password,
+    });
+
+    return user;
+  }
+
   findAll(): Promise<User[]> {
     return this.usersRepository.find();
   }
