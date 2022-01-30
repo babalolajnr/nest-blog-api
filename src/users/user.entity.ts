@@ -6,9 +6,11 @@ import {
   OneToMany,
   CreateDateColumn,
   UpdateDateColumn,
+  Unique,
 } from 'typeorm';
 
 @Entity()
+@Unique('fullname', ['firstName', 'lastName'])
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
@@ -19,7 +21,7 @@ export class User {
   @Column()
   lastName: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()
