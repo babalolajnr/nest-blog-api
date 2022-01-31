@@ -12,7 +12,9 @@ export class UsersService {
   ) {}
 
   async register(user: CreateUserDto): Promise<User> {
-    return this.usersRepository.save(user);
+    return this.usersRepository.save(user).catch((e) => {
+      return e.message;
+    });
   }
 
   findAll(): Promise<User[]> {
@@ -20,7 +22,7 @@ export class UsersService {
   }
 
   async findOne(email: string): Promise<User | undefined> {
-    return this.usersRepository.findOne(email);
+    return this.usersRepository.findOne({ where: { email: email } });
   }
 
   async remove(id: string): Promise<void> {
